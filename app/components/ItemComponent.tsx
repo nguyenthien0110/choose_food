@@ -15,8 +15,7 @@ function ItemComponent({
 }) {
   const color = ["bg-[#fec1bf]", "bg-[#bdd3cd]"];
   const [bgColor, setBgColor] = useState("");
-  const basePath = process.env.NEXT_PUBLIC_BASE_PATH;
-  console.log(basePath);
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "./img";
 
   useEffect(() => {
     setBgColor(color[Math.floor(Math.random() * color.length)]);

@@ -4,31 +4,11 @@ export const item = [
     fileName: "piaza.jpg",
   },
   {
-    title: "Pizza",
-    fileName: "piaza.jpg",
+    title: "Hủ tiếu",
+    fileName: "hutieu.jpg",
   },
   {
-    title: "Pizza",
-    fileName: "piaza.jpg",
-  },
-  {
-    title: "Pizza",
-    fileName: "piaza.jpg",
-  },
-  {
-    title: "Pizza",
-    fileName: "piaza.jpg",
-  },
-  {
-    title: "Pizza",
-    fileName: "piaza.jpg",
-  },
-  {
-    title: "Pizza",
-    fileName: "piaza.jpg",
-  },
-  {
-    title: "Pizza",
-    fileName: "piaza.jpg",
+    title: "Lẫu",
+    fileName: "lau.jpg",
   },
 ];

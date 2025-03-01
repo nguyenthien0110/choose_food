@@ -5,33 +5,42 @@ import { Heart } from "./icon/Heart";
 import { SearchEyeLine } from "./icon/SearchEyeLine";
 import { item } from "./Item";
 import ItemComponent from "./ItemComponent";
+import axios from "axios";
+import { useState } from "react";
 
 export default function FoodPicker() {
   const router = useRouter();
-  const handleChooseFood = async (items: unknown) => {
-    const text = "Bé có chắc muốn chọn món này hông ❤️";
-    if (confirm(text) == true) {
-      console.log(items);
-      const res = await fetch("/api/send-email", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          email: "nguyenthien11082005@gmail.com",
-          subject: "Test Email",
-          message: "Hello, this is a test email!",
-        }),
-      });
+  const [loading, setLoading] = useState(false);
 
-      if (res.ok) {
-        alert("Email sent!");
-        router.push("/end ");
-      } else {
-        alert("Failed to send email");
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const handleChooseFood = async (items: any) => {
+    const text = "Bé có chắc muốn chọn món này hông ❤️";
+    if (confirm(text)) {
+      if (items) {
+        setLoading(true);
+        await sendTelegram(items.title);
+        router.push(`/eat-today?meal=${items.title}`);
+        setLoading(false);
       }
     }
   };
+
+  const sendTelegram = async (message: string) => {
+    const TOKEN = "7908979390:AAEfS-OBoUaEdwJ8Y5NxSeyZheFBYjIXyTM";
+    const CHAT_ID = "-4502843341";
+    const mess = `Bé iu chọn: ${message}`;
+    await axios.post(`https://api.telegram.org/bot${TOKEN}/sendMessage`, {
+      chat_id: CHAT_ID,
+      text: mess,
+    });
+  };
   return (
     <>
+      {loading && (
+        <div className="absolute inset-0 bg-black bg-opacity-10 flex items-center justify-center pointer-events-none">
+          <div className="w-16 h-16 border-4 border-t-[#fec1bf] border-opacity-50 rounded-full animate-spin"></div>
+        </div>
+      )}
       <div className="w-full h-12 bg-[#fec1bf] rounded-3xl flex items-center shadow-xl shadow-cyan-950/50">
         <div className="w-[20%] h-full flex items-center pl-4 text-2xl">
           <Heart />
