@@ -1,9 +1,34 @@
 export const item = [
-  "Pizza 🍕",
-  "Sushi 🍣",
-  "Burger 🍔",
-  "Salad 🥗",
-  "Pasta 🍝",
-  "Tacos 🌮",
-  "Ramen 🍜",
+  {
+    title: "Pizza",
+    fileName: "piaza.jpg",
+  },
+  {
+    title: "Pizza",
+    fileName: "piaza.jpg",
+  },
+  {
+    title: "Pizza",
+    fileName: "piaza.jpg",
+  },
+  {
+    title: "Pizza",
+    fileName: "piaza.jpg",
+  },
+  {
+    title: "Pizza",
+    fileName: "piaza.jpg",
+  },
+  {
+    title: "Pizza",
+    fileName: "piaza.jpg",
+  },
+  {
+    title: "Pizza",
+    fileName: "piaza.jpg",
+  },
+  {
+    title: "Pizza",
+    fileName: "piaza.jpg",
+  },
 ];

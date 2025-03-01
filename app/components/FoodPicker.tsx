@@ -1,9 +1,35 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { Heart } from "./icon/Heart";
 import { SearchEyeLine } from "./icon/SearchEyeLine";
+import { item } from "./Item";
+import ItemComponent from "./ItemComponent";
 
 export default function FoodPicker() {
+  const router = useRouter();
+  const handleChooseFood = async (items: unknown) => {
+    const text = "Bé có chắc muốn chọn món này hông ❤️";
+    if (confirm(text) == true) {
+      console.log(items);
+      const res = await fetch("/api/send-email", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: "nguyenthien11082005@gmail.com",
+          subject: "Test Email",
+          message: "Hello, this is a test email!",
+        }),
+      });
+
+      if (res.ok) {
+        alert("Email sent!");
+        router.push("/end ");
+      } else {
+        alert("Failed to send email");
+      }
+    }
+  };
   return (
     <>
       <div className="w-full h-12 bg-[#fec1bf] rounded-3xl flex items-center shadow-xl shadow-cyan-950/50">
@@ -32,7 +58,18 @@ export default function FoodPicker() {
           </div>
         </div>
       </div>
-      <div className="flex gap-8 items-center"></div>
+      <div className="grid grid-cols-4 gap-4 p-3 w-full mt-4 justify-center items-center">
+        {item.map((item, index) => {
+          return (
+            <ItemComponent
+              handleOnclick={() => handleChooseFood(item)}
+              title={item.title}
+              key={index}
+              fileName={item.fileName}
+            />
+          );
+        })}
+      </div>
     </>
   );
 }
